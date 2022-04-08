@@ -3,7 +3,7 @@ import React,{Fragment} from 'react'
 function Intro() {
   return (
     <Fragment>
-        <div class="container">
+        <div class="container my-2">
   <div class="row">
     <div class="col" style={{textAlign: "left", width:"100px"}}>
       <h5 style={{fontFamily: "Open Sans"}}>Free forever tool for SME Digitization</h5><br/>
