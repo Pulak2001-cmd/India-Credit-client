@@ -7,7 +7,7 @@ function Intro() {
   <div class="row">
     <div class="col" style={{textAlign: "left", width:"100px"}}>
       <h5 style={{fontFamily: "Open Sans"}}>Free forever tool for SME Digitization</h5><br/>
-      <p style={{color: "Green", fontSize:"50px",fontFamily: "Anton"}}>Digitizing normal SMEs into extraordinary businesses</p>
+      <p style={{color: "Green", fontSize:"50px",fontFamily: "Anton"}}>Digitizing normal <br/> SMEs into extraordinary businesses</p>
       <br/><br/>
       <p>For Indian SME manufacturers, TranZact is a zero-effort digital transformation tool that digitizes your entire business process right from sales inquiry to dispatch.</p>
       <button type="button" class="btn btn-success" style={{borderRadius:"4px"}}>Free Sign Up</button>
