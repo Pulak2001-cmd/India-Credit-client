@@ -7,7 +7,7 @@ import "./Register.css"
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
+const REGISTER_URL = 'http://127.0.0.1:5000/v1/api/signup';
 
 function Register() {
     const userRef = useRef();
@@ -54,15 +54,13 @@ function Register() {
             return;
         }
         try {
-            const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
+            const data = {
+                name: user, 
+                password: pwd, 
+                phone: "+918927988218"
+            }
+            const response = await axios.post(REGISTER_URL, data);
             console.log(response?.data);
-            console.log(response?.accessToken);
             console.log(JSON.stringify(response))
             setSuccess(true);
             //clear state and controlled inputs
