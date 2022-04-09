@@ -2,7 +2,8 @@ import React,{useState,useRef,useEffect} from 'react'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
-import "./Register.css"
+import "./Register.css";
+import Header from './Header';
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -106,6 +107,7 @@ function Register() {
     return (
         
         <>
+        
             {success ? (
                 <section>
                     <h1>Success!</h1>
