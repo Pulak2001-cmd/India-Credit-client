@@ -7,6 +7,8 @@ import "./Register.css"
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PHN_REGEX=/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+const EMAIL_REGEX=/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
 const REGISTER_URL = 'http://127.0.0.1:5000/v1/api/signup';
 
 function Register() {
@@ -25,12 +27,28 @@ function Register() {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
+    const [phn, setPhn] = useState('');
+    const [validPhn, setValidPhn] = useState(false);
+    const [phnFocus, setPhnFocus] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
     }, [])
+
+    useEffect(() => {
+        setValidPhn(PHN_REGEX.test(phn));
+    }, [phn])
+
+    useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email])
 
     useEffect(() => {
         setValidName(USER_REGEX.test(user));
@@ -43,13 +61,15 @@ function Register() {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd])
+    }, [user, pwd, matchPwd,phn,email])
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
-        if (!v1 || !v2) {
+        const v3=PHN_REGEX.test(phn);
+        const v4=EMAIL_REGEX.test(email);
+        if (!v1 || !v2|| !v3 || !v4) {
             setErrMsg("Invalid Entry");
             return;
         }
@@ -57,7 +77,8 @@ function Register() {
             const data = {
                 name: user, 
                 password: pwd, 
-                phone: "+918927988218"
+                phone: phn,
+                email: email
             }
             const response = await axios.post(REGISTER_URL, data);
             console.log(response?.data);
@@ -68,6 +89,8 @@ function Register() {
             setUser('');
             setPwd('');
             setMatchPwd('');
+            setPhn('');
+            setEmail('');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -93,7 +116,7 @@ function Register() {
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Register</h1>
+                    <h3>Register</h3>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Username:
@@ -166,7 +189,56 @@ function Register() {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false} className="btn btn-success">Sign Up</button>
+                        <label htmlFor="phone">
+                            Phonenumber:
+                            <FontAwesomeIcon icon={faCheck} className={validPhn ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validPhn || !phn ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="text"
+                            id="phone"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setPhn(e.target.value)}
+                            value={phn}
+                            required
+                            aria-invalid={validPhn ? "false" : "true"}
+                            aria-describedby="phnnote"
+                            onFocus={() => setPhnFocus(true)}
+                            onBlur={() => setPhnFocus(false)}
+                        />
+                        <p id="phnnote" className={phnFocus && phn && !validPhn ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            10 or more characters.<br />
+                            Must be numbers.<br />
+                            +, numbers, dots, hyphens allowed.
+                        </p>
+
+                        <label htmlFor="email">
+                            email ID:
+                            <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                            aria-invalid={validEmail ? "false" : "true"}
+                            aria-describedby="emailnote"
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => setEmailFocus(false)}
+                        />
+                        <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            @symbol must be there.<br />
+                            No special characters.
+                        </p>
+
+                        <button disabled={!validName || !validPwd || !validMatch || !validPhn || !validEmail? true : false} className="btn btn-success">Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />
