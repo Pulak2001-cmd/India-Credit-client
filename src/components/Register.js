@@ -2,8 +2,8 @@ import React,{useState,useRef,useEffect} from 'react'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
-import "./Register.css";
-import Header from './Header';
+import "../Register.css";
+
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
