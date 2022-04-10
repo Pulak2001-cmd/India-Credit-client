@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "./AuthProvider";
 import '../Login.css';
+import google from './google.png'; 
 
 import axios from 'axios';
 const LOGIN_URL = '/auth';
@@ -96,7 +97,7 @@ const Login = () => {
                     </form>
                     <p style={{display:"flex"}}>
                         Need an Account?<br />
-                        <img src="./google.png" style={{height:"10px",width:"10px"}}/>
+                        <img src={google} style={{height:"30px",width:"50px"}}/>
                         
                     </p>
                     <span className="line">
