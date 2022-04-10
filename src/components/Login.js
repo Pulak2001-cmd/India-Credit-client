@@ -77,6 +77,7 @@ const Login = () => {
                             id="username"
                             ref={userRef}
                             autoComplete="off"
+                            placeholder="Enter Username, emailID or password"
                             onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required
@@ -86,19 +87,22 @@ const Login = () => {
                         <input
                             type="password"
                             id="password"
+                            placeholder="Enter Password"
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
                         />
                         <button type="button" class="btn btn-success">Sign In</button>
                     </form>
-                    <p>
+                    <p style={{display:"flex"}}>
                         Need an Account?<br />
-                        <span className="line">
+                        <img src="./google.png" style={{height:"10px",width:"10px"}}/>
+                        
+                    </p>
+                    <span className="line">
                             {/*put router link here*/}
                             <a href="#">Sign Up</a>
                         </span>
-                    </p>
                 </section>
             )}
         </>
