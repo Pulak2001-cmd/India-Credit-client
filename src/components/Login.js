@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect, useContext } from 'react';
+import {Link} from 'react-router-dom';
 import AuthContext from "./AuthProvider";
 import '../Login.css';
 import google from './google1.png'; 
 
 import axios from 'axios';
-const LOGIN_URL = '/auth';
+const LOGIN_URL = 'http://127.0.0.1:5003/v1/api/loginwithpass';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -28,18 +29,17 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            const data = {
+                user_details: user, 
+                password: pwd
+            }
+            const response = await axios.post(LOGIN_URL, data);
+            localStorage.setItem('authtoken', response.data.token);
+            // console.log(JSON.stringify(response?.data));
+            // //console.log(JSON.stringify(response));
+            // const accessToken = response?.data?.accessToken;
+            // const roles = response?.data?.roles;
+            // setAuth({ user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
             setSuccess(true);
@@ -64,7 +64,7 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Go to Home</a>
+                        <Link to="/">Go to Home</Link>
                     </p>
                 </section>
             ) : (
@@ -93,7 +93,7 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                        <button type="button" class="btn btn-success">Sign In</button>
+                        <button type="button" class="btn btn-success" onClick={handleSubmit}>Sign In</button>
                     </form>
                     <p style={{display:"flex"}}>
                         Need an Account?<br />
@@ -102,7 +102,7 @@ const Login = () => {
                     </p>
                     <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign Up</a>
+                            <Link to="/signup">Sign Up</Link>
                         </span>
                 </section>
             )}

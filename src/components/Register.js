@@ -2,6 +2,7 @@ import React,{useState,useRef,useEffect} from 'react'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import "../Register.css";
 
 
@@ -112,7 +113,7 @@ function Register() {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <Link to="/">Sign In</Link>
                     </p>
                 </section>
             ) : (
@@ -246,7 +247,7 @@ function Register() {
                         Already registered?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <Link to="/login">Sign In</Link>
                         </span>
                     </p>
                 </section>
