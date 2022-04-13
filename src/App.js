@@ -5,15 +5,29 @@ import Cards from './components/Cards';
 import Intro from './components/Intro';
 import Register from './components/Register';
 import Login from './components/Login';
+import {BrowserRouter as Router,Switch,Route,Link,Routes} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-       {/* <Header/>
-      <Intro />
-      <Cards/>   */}
-      
-      <Login/> 
+      <Router>
+      <Routes>
+        <Route path="/" element={<><Header/> <Intro/> <Cards/></>}>
+          
+          </Route>
+        </Routes>
+        <Routes>
+        <Route path="/Register" element={<Register/>}>
+          
+          </Route>
+        </Routes>
+        <Routes>
+        <Route path="/Login" element={<Login/>}>
+          
+          </Route>
+        </Routes>
+      </Router>
+       
     </div>
   );
 }
