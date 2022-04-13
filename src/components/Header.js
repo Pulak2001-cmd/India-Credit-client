@@ -12,7 +12,7 @@ function Header() {
   return (
     <div>
         <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: "rgb(249, 255, 253)"}}>
-  <div class="container-fluid" style={{width: '1420px'}}>
+  <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     {/* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@ function Header() {
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
        
       </ul>
-      <form class="d-flex">
+      <form class="d-flex"  style={{marginLeft: '420px'}}>
         {localStorage.getItem('authtoken')?
         <>
         <button class="btn btn-outline-primary mx-1" type="submit">My Profile</button>
