@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useContext } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import AuthContext from "./AuthProvider";
 import '../Login.css';
 import google from './google1.png'; 
@@ -43,6 +43,7 @@ const Login = () => {
             setUser('');
             setPwd('');
             setSuccess(true);
+            <Navigate to="/" />
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
