@@ -1,6 +1,10 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 function Header() {
+  const logout =  ()=>{
+    localStorage.removeItem('authtoken')
+  }
   return (
     <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,8 +37,15 @@ function Header() {
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        {/* <button class="btn btn-outline-success" type="submit">Search</button> */}
+        {localStorage.getItem('authtoken')?
+        <>
+        <button class="btn btn-outline-primary mx-1" type="submit">My Profile</button>
+        <button class="btn btn-outline-primary mx-1" type="submit" onClick={logout}>Logout</button>
+        </> :
+        <>
+        <Link to="/login"><button class="btn btn-outline-success mx-1" type="submit">Login</button></Link>
+        <Link to="/signup"><button class="btn btn-outline-success mx-1" type="submit">Signup</button></Link>
+        </>  }
       </form>
     </div>
   </div>

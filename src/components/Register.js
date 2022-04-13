@@ -120,7 +120,7 @@ function Register() {
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h3>Register</h3>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="signup_form">
                         <label htmlFor="username">
                             Username:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
