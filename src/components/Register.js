@@ -1,5 +1,6 @@
 import React,{useState,useRef,useEffect} from 'react'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { GoogleLogin } from 'react-google-login'; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
 import {Link} from 'react-router-dom';
@@ -102,6 +103,23 @@ function Register() {
                 setErrMsg('Registration Failed')
             }
             errRef.current.focus();
+        }
+    }
+    const responseGoogle = async (response) => {
+        console.log(response.Du);
+        const data = {
+            email: response.Du.tv,
+            name: response.Du.tf
+        }
+        console.log(data);
+        const response2 = await axios.post('http://localhost:5003/v1/api/o_login', data);
+        console.log(response2);
+        if (response2.data.status === true){
+            localStorage.setItem('authtoken', response2.data.token);
+            setSuccess(true);
+        }
+        else{
+            setErrMsg(response2.error);
         }
     }
 
@@ -243,6 +261,14 @@ function Register() {
 
                         <button disabled={!validName || !validPwd || !validMatch || !validPhn || !validEmail? true : false} className="btn btn-success">Sign Up</button>
                     </form>
+                    <GoogleLogin
+                            clientId="237161729419-go8jqorki8ocba83afao4r7bfapclaf3.apps.googleusercontent.com"
+                            buttonText="Continue With Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            style={{width: '50%'}}
+                    />
                     <p>
                         Already registered?<br />
                         <span className="line">

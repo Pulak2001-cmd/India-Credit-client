@@ -113,16 +113,19 @@ const Login = () => {
                         />
                         <button type="button" class="btn btn-success" onClick={handleSubmit}>Sign In</button>
                     </form>
-                    <p style={{display:"flex"}}>
-                        Need an Account?<br />
-                        {/* <img className="mx-4" src={google} style={{height:"35px",width:"38px"}}/> */}
-                        <GoogleLogin
+                    <GoogleLogin
                             clientId="237161729419-go8jqorki8ocba83afao4r7bfapclaf3.apps.googleusercontent.com"
-                            buttonText="Login"
+                            buttonText="Login With Google"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
-                        />
+                            className="my-2 px-4"
+                            style={{backgroundColor: 'black'}}
+                    />
+                    <p style={{display:"flex"}}>
+                        Need an Account?<br />
+                        {/* <img className="mx-4" src={google} style={{height:"35px",width:"38px"}}/> */}
+                        
                         
                     </p>
                     <span className="line">
