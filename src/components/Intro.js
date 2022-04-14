@@ -1,4 +1,5 @@
-import React,{Fragment} from 'react'
+import React,{Fragment} from 'react';
+import {Link} from 'react-router-dom';
 
 function Intro() {
   return (
@@ -10,7 +11,7 @@ function Intro() {
       <p style={{color: "Green", fontSize:"50px",fontFamily: "Anton"}}>Digitizing normal <br/> SMEs into extraordinary businesses</p>
       <br/><br/>
       <p>For Indian SME manufacturers, TranZact is a zero-effort digital transformation tool that digitizes your entire business process right from sales inquiry to dispatch.</p>
-      <button type="button" class="btn btn-success" style={{borderRadius:"4px"}}>Free Sign Up</button>
+      <Link to="/signup"><button type="button" class="btn btn-success" style={{borderRadius:"4px"}}>Free Sign Up</button></Link>
     </div>
     <div class="col">
     <img src="./Image1.png" class="card-img-top" alt="..."/>

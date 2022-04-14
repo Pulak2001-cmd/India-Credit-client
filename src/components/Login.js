@@ -24,6 +24,9 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
+        if (localStorage.getItem('authtoken') !== undefined) {
+            setSuccess(true);
+        }
     }, [user, pwd])
     const responseGoogle = async (response) => {
         console.log(response.Du);

@@ -64,6 +64,9 @@ function Register() {
 
     useEffect(() => {
         setErrMsg('');
+        if (localStorage.getItem('authtoken') !== undefined) {
+            setSuccess(true);
+        }
     }, [user, pwd, matchPwd,phn,email])
     const handleSubmit = async (e) => {
         e.preventDefault();
