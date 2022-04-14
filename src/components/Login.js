@@ -2,7 +2,8 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import AuthContext from "./AuthProvider";
 import '../Login.css';
-import google from './google1.png'; 
+import google from './google1.png';
+import { GoogleLogin } from 'react-google-login'; 
 
 import axios from 'axios';
 const LOGIN_URL = 'http://127.0.0.1:5003/v1/api/loginwithpass';
@@ -24,7 +25,23 @@ const Login = () => {
     useEffect(() => {
         setErrMsg('');
     }, [user, pwd])
-
+    const responseGoogle = async (response) => {
+        console.log(response.Du);
+        const data = {
+            email: response.Du.tv,
+            name: response.Du.tf
+        }
+        console.log(data);
+        const response2 = await axios.post('http://localhost:5003/v1/api/o_login', data);
+        console.log(response2);
+        if (response2.data.status === true){
+            localStorage.setItem('authtoken', response2.data.token);
+            setSuccess(true);
+        }
+        else{
+            setErrMsg(response2.error);
+        }
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -98,7 +115,14 @@ const Login = () => {
                     </form>
                     <p style={{display:"flex"}}>
                         Need an Account?<br />
-                        <img className="mx-4" src={google} style={{height:"35px",width:"38px"}}/>
+                        {/* <img className="mx-4" src={google} style={{height:"35px",width:"38px"}}/> */}
+                        <GoogleLogin
+                            clientId="237161729419-go8jqorki8ocba83afao4r7bfapclaf3.apps.googleusercontent.com"
+                            buttonText="Login"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />
                         
                     </p>
                     <span className="line">
