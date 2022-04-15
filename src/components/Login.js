@@ -24,7 +24,7 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-        if (localStorage.getItem('authtoken') !== undefined) {
+        if (localStorage.getItem('authtoken')) {
             setSuccess(true);
         }
     }, [user, pwd])
@@ -79,7 +79,7 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div className="App">
             {success ? (
                 <section>
                     <h1>You are logged in!</h1>
@@ -137,7 +137,7 @@ const Login = () => {
                         </span>
                 </section>
             )}
-        </>
+        </div>
     )
 }
 

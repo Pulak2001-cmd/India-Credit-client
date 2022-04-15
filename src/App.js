@@ -6,10 +6,11 @@ import Intro from './components/Intro';
 import Register from './components/Register';
 import Login from './components/Login';
 import {BrowserRouter as Router,Switch,Route,Link,Routes,Navigate} from 'react-router-dom'
+import Profile from './components/Profile';
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Router>
       <Routes>
         <Route path="/" element={<><Header/> <Intro/> <Cards/></>}>
@@ -25,6 +26,9 @@ function App() {
         <Route path="login" element={<Login/>}>
           
           </Route>
+        </Routes>
+        <Routes>
+          <Route path="/user/profile" element={<><Header /><Profile/></>} />
         </Routes>
       </Router>
        

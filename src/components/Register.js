@@ -64,7 +64,7 @@ function Register() {
 
     useEffect(() => {
         setErrMsg('');
-        if (localStorage.getItem('authtoken') !== undefined) {
+        if (localStorage.getItem('authtoken')) {
             setSuccess(true);
         }
     }, [user, pwd, matchPwd,phn,email])
@@ -128,7 +128,7 @@ function Register() {
 
     return (
         
-        <>
+        <div className="App">
         
             {success ? (
                 <section>
@@ -281,7 +281,7 @@ function Register() {
                     </p>
                 </section>
             )}
-        </>
+        </div>
     )
 }
 
