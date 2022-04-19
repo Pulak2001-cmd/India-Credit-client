@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Profilecard from './Profilecard';
 
 export class Profile extends Component {
     constructor(props) {
@@ -35,7 +36,12 @@ export class Profile extends Component {
     }
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{display: 'flex', flexDirection: 'row'}}>
+         <Profilecard src="./Image1.png" title="Aryapriyo"/>
+      <div className="container1 mx-5 my-3" style={{height: "30em", width:"40em", marginTop: "5em"}}>
+       
+        <h1 className="heading" style={{textAlign: "center"}}>Public Profile</h1>
+        <p style={{textAlign: "center"}}>Add information about yourself</p>
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" onChange={this.handleName} placeholder="Enter Your Name Here" value={this.state.user_name}></input>
@@ -48,9 +54,11 @@ export class Profile extends Component {
             <label for="exampleFormControlInput3" class="form-label">Phone</label>
             <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Enter your phone Number" value={this.state.phone}></input>
           </div>
+          
           <div style={{margin: 'auto'}}>
           <button className="btn btn-outline-primary" disabled={this.state.btndisabled} onClick={this.profileSubmit}>Save</button>
           </div>
+      </div>
       </div>
     )
   }

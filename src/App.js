@@ -8,6 +8,7 @@ import Login from './components/Login';
 import {BrowserRouter as Router,Switch,Route,Link,Routes,Navigate} from 'react-router-dom'
 import Profile from './components/Profile';
 
+
 function App() {
   return (
     <div className="">
@@ -30,7 +31,8 @@ function App() {
         <Routes>
           <Route path="/user/profile" element={<><Header /><Profile/></>} />
         </Routes>
-      </Router>
+      </Router> 
+      <Profile/>
        
     </div>
   );

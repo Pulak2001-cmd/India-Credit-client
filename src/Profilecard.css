@@ -1,0 +1,9 @@
+.abc:hover {
+    background-color: black;
+    color: white;
+    border-radius: 2px;
+    
+}
+p{
+    cursor: pointer;
+}
