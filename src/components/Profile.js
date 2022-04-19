@@ -37,7 +37,7 @@ export class Profile extends Component {
   render() {
     return (
       <div className="container" style={{display: 'flex', flexDirection: 'row'}}>
-         <Profilecard src="./Image1.png" title="Aryapriyo"/>
+         <Profilecard src="./Image1.png" title={this.state.user_name}/>
       <div className="container1 mx-5 my-3" style={{height: "30em", width:"40em", marginTop: "5em"}}>
        
         <h1 className="heading" style={{textAlign: "center"}}>Public Profile</h1>

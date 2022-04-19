@@ -32,7 +32,6 @@ function App() {
           <Route path="/user/profile" element={<><Header /><Profile/></>} />
         </Routes>
       </Router> 
-      <Profile/>
        
     </div>
   );

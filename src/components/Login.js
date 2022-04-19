@@ -29,10 +29,10 @@ const Login = () => {
         }
     }, [user, pwd])
     const responseGoogle = async (response) => {
-        console.log(response.Du);
+        console.log(response);
         const data = {
-            email: response.Du.tv,
-            name: response.Du.tf
+            email: response.Lu.Bv,
+            name: response.Lu.tf
         }
         console.log(data);
         const response2 = await axios.post('http://localhost:5003/v1/api/o_login', data);
@@ -54,15 +54,16 @@ const Login = () => {
                 password: pwd
             }
             const response = await axios.post(LOGIN_URL, data);
-            localStorage.setItem('authtoken', response.data.token);
-            // console.log(JSON.stringify(response?.data));
-            // //console.log(JSON.stringify(response));
-            // const accessToken = response?.data?.accessToken;
-            // const roles = response?.data?.roles;
-            // setAuth({ user, pwd, roles, accessToken });
-            setUser('');
-            setPwd('');
-            setSuccess(true);
+            console.log(response);
+            if (response.data.error === "") {
+                localStorage.setItem('authtoken', response.data.token);
+                setUser('');
+                setPwd('');
+                setSuccess(true);
+            }
+            else {
+                setErrMsg(response.data.error);
+            }
             <Navigate to="/" />
         } catch (err) {
             if (!err?.response) {
