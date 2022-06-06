@@ -17,6 +17,7 @@ export class Profile extends Component {
         const response = await axios.get('http://localhost:5003/v1/api/profile', {headers: {authtoken: localStorage.getItem('authtoken')}});
         console.log(response.data.id);
         this.setState({user_name: response.data.name, email: response.data.email, phone: response.data.phone, id: response.data.id});
+        localStorage.setItem('isServiceProvider', true);
     }
     handleName = (e)=>{
         if(e.target.value !== this.state.user_name){
