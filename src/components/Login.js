@@ -4,9 +4,11 @@ import AuthContext from "./AuthProvider";
 import '../Login.css';
 import google from './google1.png';
 import { GoogleLogin } from 'react-google-login'; 
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 const LOGIN_URL = 'http://127.0.0.1:5003/v1/api/loginwithpass';
+
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -28,11 +30,11 @@ const Login = () => {
             setSuccess(true);
         }
     }, [user, pwd])
-    const responseGoogle = async (response) => {
+    const ResponseGoogle = async (response) => {
         console.log(response);
         const data = {
-            email: response.Lu.Bv,
-            name: response.Lu.tf
+            email: response.Ru.Iv,
+            name: response.Ru.tf
         }
         console.log(data);
         const response2 = await axios.post('http://localhost:5003/v1/api/o_login', data);
@@ -120,8 +122,8 @@ const Login = () => {
                     <GoogleLogin
                             clientId="237161729419-go8jqorki8ocba83afao4r7bfapclaf3.apps.googleusercontent.com"
                             buttonText="Login With Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
+                            onSuccess={ResponseGoogle}
+                            onFailure={ResponseGoogle}
                             cookiePolicy={'single_host_origin'}
                             className="my-2 px-4"
                             style={{backgroundColor: 'black'}}
