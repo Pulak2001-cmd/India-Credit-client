@@ -7,6 +7,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import {BrowserRouter as Router,Switch,Route,Link,Routes,Navigate} from 'react-router-dom'
 import Profile from './components/Profile';
+import Register_seller from './components/Register_seller';
 
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/user/profile" element={<><Header /><Profile/></>} />
+        </Routes>
+        <Routes>
+          <Route path="/user/service" element={<><Header /><Register_seller/></>} />
         </Routes>
       </Router> 
        
